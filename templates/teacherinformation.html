@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CCOSMR--Course--Information</title>
+    <link rel="stylesheet" href="css/style.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+
+            var courseid={{id}};
+
+            function request_comment() {
+                var classid={{id}};
+                var c = document.getElementById("comment").value;
+                var score=document.getElementById("s").value;
+                var data = JSON.stringify({"review":c,"id":classid,"rating":score});
+                $.post("/review",
+                    data,
+                    function(n){
+                        var now = new Date();
+                        var year = now.getFullYear(); //得到年份
+                        var month = now.getMonth();//得到月份
+                        var date = now.getDate();//得到日期
+                        var day = now.getDay();//得到周几
+                        var hour = now.getHours();//得到小时
+                        var minu = now.getMinutes();//得到分钟
+                        var sec = now.getSeconds();//得到秒
+                        month = month + 1;
+                        if (month < 10) month = "0" + month;
+                        if (date < 10) date = "0" + date;
+                        if (hour < 10) hour = "0" + hour;
+                        if (minu < 10) minu = "0" + minu;
+                        if (sec < 10) sec = "0" + sec;
+                        var time = "";
+                        //精确到天
+                        time = year + "-" + month + "-" + date;
+                        var e = document.getElementById("f");
+                        var q = document.getElementById("comment").value;
+                        e.innerHTML+=`
+                                        <article class="excerpt">
+                                                <div class="excerpttxt">
+                                                    <ul class="nospace inline pushright font-xs">
+                                                        <li>
+                                                            <ul class="nospace inline pushright font-xs">
+                                                                <li><h6 class="heading">`+n.name+`</h6></li>
+                                                                <ul class="nospace inline pushright font-xs">
+                                                                    <li><i class="fa fa-comments"></i> <a href="/personalinfo?id=`+n.id+`">`+n.id+`</a></li>
+                                                                    <li><i class="fa fa-calendar-o"></i>`+time+`</li>
+                                                                </ul>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                    <p>`+q+`</p>
+                                                </div>
+                                        </article>                  
+                        `;                           
+                                }
+                            );
+            }
+            
+            function addcomment(){
+                var now = new Date();
+                var year = now.getFullYear(); //得到年份
+                var month = now.getMonth();//得到月份
+                var date = now.getDate();//得到日期
+                var day = now.getDay();//得到周几
+                var hour = now.getHours();//得到小时
+                var minu = now.getMinutes();//得到分钟
+                var sec = now.getSeconds();//得到秒
+                month = month + 1;
+                if (month < 10) month = "0" + month;
+                if (date < 10) date = "0" + date;
+                if (hour < 10) hour = "0" + hour;
+                if (minu < 10) minu = "0" + minu;
+                if (sec < 10) sec = "0" + sec;
+                var time = "";
+                //精确到天
+                time = year + "-" + month + "-" + date;
+                var e = document.getElementById("f");
+                var q = document.getElementById("comment").value;
+
+                        e.innerHTML+=`
+                                <article class="excerpt">
+                                        <div class="excerpttxt">
+                                            <ul class="nospace inline pushright font-xs">
+                                                <li>
+                                                    <ul class="nospace inline pushright font-xs">
+                                                        <li><h6 class="heading">Course comment</h6></li>
+                                                        <ul class="nospace inline pushright font-xs">
+                                                            <li><i class="fa fa-comments"></i> <a href="#">@Ronald</a></li>
+                                                            <li><i class="fa fa-calendar-o"></i>`+time+`</li>
+                                                        </ul>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <p>`+q+`</p>
+                                        </div>
+                                </article>                  
+                `;
+            }
+
+            function getcomment(){
+                var cid={{id}};
+                $.get(`/review?courseid=`+cid+``,
+                    function(n){
+                        var e = document.getElementById("f");
+                        for(var i=0;i<n.length;i++){
+                                e.innerHTML+=`
+                                        <article class="excerpt">
+                                                <div class="excerpttxt">
+                                                    <ul class="nospace inline pushright font-xs">
+                                                        <li>
+                                                            <ul class="nospace inline pushright font-xs">
+                                                                <li><h6 class="heading">`+n[i].poster_name+`</h6></li>
+                                                                <ul class="nospace inline pushright font-xs">
+                                                                    <li><i class="fa fa-comments"></i> <a href="/personalinfo?id=`+n[i].poster_id+`">`+n[i].poster_id+`</a></li>
+                                                                    <li><i class="fa fa-calendar-o"></i>`+n[i].time+`</li>
+                                                                </ul>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                    <p>`+n[i].content+`</p>
+                                                </div>
+                                        </article>                
+                            `;
+                            }
+                    }
+                )
+
+            }
+
+            function submitscore(){
+                var c = document.getElementById("s").value;
+                var data = JSON.stringify({"score":c});
+                $.post("/score",
+                    data,
+                    function(n){
+                        }
+                    );                
+            }
+
+            function follow(){
+                var cid={{id}};
+                var data = JSON.stringify({"courseid":cid,"bool":1});
+                $.post("/attend",
+                    data,
+                    function(n){
+                        }
+                    );                
+            }
+
+            function unfollow(){
+                var cid={{id}};
+                var data = JSON.stringify({"courseid":cid,"bool":0});
+                $.post("/attend",
+                    data,
+                    function(n){
+                        }
+                    );                
+            }
+
+
+    </script>
+</head>
+<body onload="getcomment()">
+
+    <!-- Main navigation -->
+    <div id="sidebar">
+                      
+            <div class="navbar-expand-md navbar-dark"> 
+            
+                <header class="d-none d-md-block">
+                    <h3 style="color:#000000">TeacherInformation</h3>
+                </header>
+                
+                
+                <!-- Mobile menu toggle and header -->
+                <div class="mobile-header-controls">
+                    <a class="navbar-brand d-md-none d-lg-none d-xl-none" href="#"><h2>Teacherinformation</h2></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#SidebarContent" aria-controls="SidebarContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+         
+                <div id="SidebarContent" class="collapse flex-column navbar-collapse">
+ 
+                        
+                    
+                    <!-- Main navigation items -->
+                    <nav class="navbar navbar-dark">
+                        <div id="mainNavbar">
+                            <ul class="flex-column mr-auto">
+                                <li class="nav-item active dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#MenuDropdown" data-toggle="collapse" aria-controls="MenuDropdown" aria-expanded="false">Navigation</a>
+                                            <ul id="MenuDropdown" class="sub-navbar collapse flex-column">
+                                                <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                                                <li class="nav-item"><a class="nav-link" href="/personalinfo">Personalpage</a></li>
+                                            </ul>
+                                </li>
+
+                            </ul>
+                        </div>   
+                    </nav>
+                
+                    <!-- Social icons -->
+                    <p class="sidebar-social-icons social-icons">
+                        <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-youtube fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-instagram fa-2x"></i></a>
+                    </p>
+                
+                </div>
+            </div> 
+        </div>
+
+    <div id="content">
+        <div id="content-wrapper">
+                <!-- Jumbtron / Slider -->
+                <div class="jumbotron-wrap">
+                        <div class="container-fluid">
+                            <div class="jumbotron static-slider">
+                                <h1 class="text-center">{{name}}老师简介</h1>
+                                <div class="alert alert-info" role="alert" align="center">
+                                    <h2>所属学院：{{college}}</h2>   
+                                </div>                                 
+                                <h2 class="lead text-center">{{desc}}</h2>
+                            </div>
+                        </div>
+                    </div>               
+            
+        </div>
+    </div>    
+
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"/>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>CCOSMR</title>
+	<link rel="stylesheet" type="text/css" href="style/register-login.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="/javascript/profile.js"></script>
+</head>
+<body class='three-sidebar' onload="check_post();">
+	<div id="sidebar">
+                      
+            <div class="navbar-expand-md navbar-dark"> 
+            
+                <header class="d-none d-md-block">
+                    <h2><span class="text-left" style='color: #ffffff;'>CCOSMR</span></h2>
+                </header>
+                
+				
+                <div id="SidebarContent" class="collapse flex-column navbar-collapse">
+ 
+                    <!-- Sidebar search form -->
+                    
+                    
+								
+					<div style="padding-bottom: 20px; width:100%;">
+						<div class="alert alert-primary" role="alert" style="float: left; padding-left:5%; padding-right:5%; width:100%">
+							
+							<div style="margin-bottom: 10px;">
+								<ul class="nospace inline pushright font-xs">
+									<li id='self_picture'>
+										
+									</li>
+									<li><h6 id="self_name" class="heading"></h6></li>
+									<ul class="nospace inline pushright font-xs"> 
+										<li><a id="self_id"></a></li>
+									</ul>
+								</ul>
+							</div>
+							<div>
+								<button type="button" class="btn btn-primary button-s">
+									<i class="fa fa-user"></i> My page</button>
+							
+								<button type="button" class="btn btn-secondary button-s">
+									<i class="fa fa-cog"></i> Settings</button>
+									
+								<button type="button" class="btn btn-danger button-s">
+									<i class="fa fa-power-off"></i> Log out</button>
+								
+							</div>
+						</div>
+						
+					</div>
+                    
+                    <!-- Main navigation items -->
+                    <nav class="navbar navbar-dark">
+                        <div id="mainNavbar">
+                            <ul class="flex-column mr-auto">
+                                <li class="nav-item active dropdown"  style="background-color: #cbecf1;">
+									<a class="nav-link dropdown-toggle" href="#MenuDropdown" data-toggle="collapse" aria-controls="MenuDropdown" aria-expanded="false"><h4>Discover</h4></a>
+									<ul id="MenuDropdown" class="sub-navbar collapse flex-column" style="background-color: #cbecf1;">
+										<li class="nav-item"><a class="nav-link" style="background-color: #cbecf1;" href="/home">Homepage</a></li>
+										<li class="nav-item"><a class="nav-link" style="background-color: #cbecf1;" href="/course">Courses</a></li>
+										<li class="nav-item"><a class="nav-link" style="background-color: #cbecf1;" href="/course">About us</a></li>
+									</ul>
+                                </li>
+
+                            </ul>
+                        </div>   
+                    </nav>
+                
+          
+                    <!-- Social icons -->
+                    <p class="sidebar-social-icons social-icons">
+                        <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-youtube fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-instagram fa-2x"></i></a>
+                    </p>
+                
+                </div>
+            </div> 
+        </div>	
+		
+		<div id='content'>
+            <div id="content-wrapper">
+                <!-- Main content area -->
+                <main class="container-fluid">
+                    <div class="row">
+                        <!-- Main content -->
+                        <div class="col-md-12" id="posts_list">
+                        </div>
+                       
+                    </div> 
+					
+                </main>
+				
+		</div>
+		
+	</div>
+	<div id="rightbar">
+                      
+           <aside class='col-md-12' style="background-color:#f8f8f8; padding-top: 10%;">
+				<div class="sidebar-box sidebar-box-bg">
+					<div style="margin-bottom: 10px;">
+						<ul class="nospace inline pushright font-xs">
+							<li id='user_picture'>
+							</li>
+							<li><ul><h4 id='user_name'></h4></ul>
+							<ul class="nospace inline pushright font-xs"> 
+								<li><p style='margin:0px;'><a id='user_id'></a></p></li>
+							</ul></li>
+						</ul>
+						<ul>
+							<span class="badge badge-info" id='followed_badge' style='display: none;'>
+								<i class="fa fa-check"></i> Followed</span>			
+							<span class="badge badge-light" id='following_me_badge' style='display: none;'>
+								<i class="fa fa-eye" id='following_me_badge'></i> Following you</span>
+							<span class="badge badge-success" id='me_badge' style='display: none;'>
+								<i class="fa fa-user" id='me_badge'></i> Me</span>
+						</ul>
+					</div>
+					<div style='float:left;'>
+						<h4 id='user_name'></h4>
+						<p style='margin:0px;'><a id='user_id'></a></p>
+						<span class="badge badge-info" id='followed_badge' style='display: none;'>
+							<i class="fa fa-check"></i> Followed</span>			
+						<span class="badge badge-light" id='following_me_badge' style='display: none;'>
+							<i class="fa fa-eye" id='following_me_badge'></i> Following you</span>
+						<span class="badge badge-success" id='me_badge' style='display: none;'>
+							<i class="fa fa-user" id='me_badge'></i> Me</span>
+					</div>
+					</div>
+						<div class="sidebar-box sidebar-box-bg">
+							<button type="button" class="btn btn-info" id='follow_button' style='display: none;' onclick='follow(true);'>
+								<i class="fa fa-plus"></i> Follow</button>	
+							<button type="button" class="btn btn-secondary" id='unfollow_button' style='display: none;' onclick='follow(false);'>
+								<i class="fa fa-minus"></i> Unfollow</button>						
+						</div>
+				<div >
+				
+								<ul class="nav nav-tabs">
+									<li class="nav-item">
+										<a class="nav-link active" id="tab0" onclick="select_tag(0);" style="font-size:0.8rem;">Following</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" id="tab1" onclick="select_tag(1);" style="font-size:0.8rem;">Followers</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" id="tab2" onclick="select_tag(2);" style="font-size:0.8rem;">Courses</a>
+									</li>
+								</ul>
+								<div class='tab_selection' id='selection0' style="background-color:#ffffff;">
+									<div style="max-height:200px; overflow:auto; padding:15px;">
+										<table class="table font-xs">
+											<tbody id="follower_table">
+											<tr>
+												<td>John Smith</td>
+												<td><a href="#">123</a></td>
+											</tr>
+											<tr>
+												<td>Fred James</td>
+												<td>123</td>
+												<td>49</td>
+											</tr>
+											<tr>
+												<td>Rachel Johnson</td>
+												<td>123</td>
+												<td>19</td>
+											</tr>
+											</tbody></table>
+									</div>
+								</div>
+								<div class='tab_selection' id='selection1' style="display:none; background-color:#ffffff;">
+									<div style="max-height:200px; overflow:auto; padding:15px;">
+										<table class="table font-xs">
+											<tbody id="following_table">
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class='tab_selection' id='selection2' style="display:none; background-color:#ffffff;">
+									<div style="max-height:200px; overflow:auto; padding:15px;">
+										<table class="table font-xs">
+											<tbody id="course_table">
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="sidebar-box" style="padding-top: 20px;">
+									<form class="form-inline my-2 my-lg-0">
+										<input class="form-control mr-sm-2" type="text" placeholder="Courses, people..." aria-label="Search" style="width:65%;">
+										<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+									</form>
+								</div>
+							</div>
+			</aside>
+                    </div> 
+        </div>	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

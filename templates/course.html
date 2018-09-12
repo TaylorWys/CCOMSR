@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CCOSMR--Course</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="/javascript/course.js"></script>
+
+</head>
+<body>
+<div id="sidebar">
+    <!-- Main navigation -->
+    <div class="navbar-expand-md navbar-dark">
+                <header class="d-none d-md-block">
+                        <h2><span>CCOMSR</span>Course</h2>
+                </header>
+                <!-- Mobile menu toggle and header -->
+                <div class="mobile-header-controls">
+                        <a class="navbar-brand d-md-none d-lg-none d-xl-none" href="#"><span>my</span>website</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#SidebarContent" aria-controls="SidebarContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                </div>    
+                <div id="SidebarContent" class="collapse flex-column navbar-collapse">
+                    <!-- Main navigation items -->
+                    <nav class="navbar navbar-dark">
+                            <div id="mainNavbar">
+                                <ul class="flex-column mr-auto">
+
+                                    <li class="nav-item active dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#MenuDropdown" data-toggle="collapse" aria-controls="MenuDropdown" aria-expanded="false">Navigation</a>
+                                                <ul id="MenuDropdown" class="sub-navbar collapse flex-column">
+                                                    <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="/personalinfo">Personalpage</a></li>
+                                                </ul>
+                                    </li>
+
+                                    </li>
+                                </ul>
+                            </div>   
+                        </nav>                    
+                    <!-- Sidebar search form -->
+                    <form class="form-inline sidebar-search-form my-2 my-lg-0" method="post">
+                            <input id="mysearch" class="form-control mr-sm-2" type="text" size="10"  placeholder="Search" aria-label="Search">
+                            <p onclick="request_searchcourse();" class="btn my-2 my-sm-0" type="submit">Search</p>
+                    </form>    
+                    <!-- Social icons -->
+                    <p class="sidebar-social-icons social-icons">
+                            <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
+                            <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+                            <a href="#"><i class="fa fa-youtube fa-2x"></i></a>
+                            <a href="#"><i class="fa fa-instagram fa-2x"></i></a>
+                        </p>                                    
+                </div>
+    </div>
+</div>
+
+<div id="content">
+
+    <div id="content-wrapper">
+
+                <!-- Jumbtron / Slider -->
+                <div class="jumbotron-wrap">
+                        <div class="container-fluid">
+                            <div class="jumbotron jumbotron-narrow static-slider">
+                                <h1 class="text-center">Result</h1>
+                            </div>
+                        </div>
+                </div>
+    
+                <!-- Main content area -->
+                <main class=class="container-fluid" >
+                    <div class="row">
+                        <!-- Main content -->
+                        <div div class="col">
+                            <article>
+                                    <table id="resulttable" class="table">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Score</th>
+                                                <th>Course number</th>
+                                            </tr>
+                                            <tr>
+                                                <td><h5>9</h5></td>
+                                                <td><h5>高等数学（一）</h5></td>
+                                                <td><h5>8</h5></td>
+                                                <td><h5>60</h5></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h5>22</h5></td>
+                                                <td><h5>线性代数</h5></td>
+                                                <td><h5>9</h5></td>
+                                                <td><h5>30</h5></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h5>7</h5></td>
+                                                <td><h5>计算机体系结构</h5></td>
+                                                <td><h5>8</h5></td>
+                                                <td><h5>60</h5></td>
+                                            </tr>    
+                                    </table>
+
+                            </article>
+                            <!-- <button id="test" onclick="efg();" type="button" class="btn btn-danger">Danger</button> -->
+                        </div>
+                    </div>
+                </main>    
+    </div>
+
+</div>
+
+
+   
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"/>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

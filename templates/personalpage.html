@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CCOSMR-personalpage</title>
+    <link rel="stylesheet" type="text/css" href="style/register-login.css">
+    <link rel="stylesheet" href="css/style.css">
+ <script>
+	 
+var id={{id}};
+
+
+
+
+function fillinfo(){
+              insert_userid(id);
+              $.get("/personaldetail"+"?id="+id,
+              function(info){
+                //alert(JSON.stringify(info))
+                insert_username(info.user_name);
+                insert_useremail(info.user_email);
+
+                var temp = "";
+                 for (var i in info.courses) { 
+                // temp += i + ":" + info.courses[i] + "\n";
+                 insert_coursename(info.courses[i],i);
+
+                }
+   
+
+
+                var temp1 = "";
+                 for (var j in info.friends) { //用javascript的for/in循环遍历对象的属性
+                 //temp1 += j + ":" + info.friends[j] + "\n";
+                 insert_friendname(info.friends[j],j);
+
+                }
+
+              
+              },dataType = "json")
+      };
+
+
+function insert_userid() {
+
+  var str0="<span class='text-left' style='color: #ffffff;'>"+id+"</span>";
+  document.getElementById('userid').innerHTML = str0;
+}
+
+
+function insert_username(username) {
+  var str1="<span class='text-left'; style='color: #ffffff;'>"+username+"</span>";
+  document.getElementById('username').innerHTML = str1;
+}
+
+
+function insert_useremail(useremail) {
+
+  var str2="<span class='text-left' style='color: #ffffff;'>"+useremail+"</span>";
+  document.getElementById('useremail').innerHTML = str2;
+}
+
+
+
+function insert_coursename(coursename,i) {
+    
+  var str3=" <li class='nav-item'><a class='nav-link' href='/course?courseid="+i+"'>"+coursename+"</a></li>";
+  document.getElementById('MenuDropdown').innerHTML += str3;
+}
+
+
+
+function insert_friendname(friendname,j) {
+var str4=" <li class='nav-item'><a class='nav-link' href='/personalinfo?id="+j+"'>"+friendname+"</a></li>";
+document.getElementById('MenuDropdownfollow').innerHTML += str4;
+}
+
+        
+   
+     
+
+
+
+ 
+ 
+</script>  
+</head>
+<body onload="fillinfo()">
+    <div id="sidebar">
+                       
+            <div class="navbar-expand-md navbar-dark"> 
+            
+                <header class="d-none d-md-block" >
+                    <h2><span class="text-left" style='color: #ffffff;'>CCOSMR</span></h2>
+                     <h5><span class="text-left" style='color: #ffffff;'>Personal information</span></h5>
+                        <hr/>
+                     <h6 id="userid" >
+                          <!-- put username here-->
+
+                     </h6>
+                     <hr/>
+                     <h6 id="username">
+                        <!-- put username here-->
+                     </h6>
+                     <hr/>
+                     <h6 id="useremail">
+                          <!-- put useremail here-->
+                     </h6>
+                </header>
+                
+                <!-- Mobile menu toggle and header -->
+                <div class="mobile-header-controls">
+                    <a class="navbar-brand d-md-none d-lg-none d-xl-none" href="#"><span>my</span>website</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#SidebarContent" aria-controls="SidebarContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+         
+                <div id="SidebarContent" class="collapse flex-column navbar-collapse">
+ 
+                    <!-- Sidebar search form -->
+                   
+                        
+                    
+                    <!-- Main navigation items -->
+                    <nav class="navbar navbar-dark">
+                        <div id="mainNavbar">
+                            <ul class="flex-column mr-auto">
+                                
+
+
+
+                                 <li class="nav-item active dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#MenuDropdown" data-toggle="collapse" aria-controls="MenuDropdown" aria-expanded="false">Courses</a>
+                                            <ul id="MenuDropdown" class="sub-navbar collapse flex-column">
+                                               <!--add course name here-->
+                                            </ul>
+                                </li>
+
+                                <hr/>
+
+                                <li class="nav-item active dropdown"  >
+                                    <a class="nav-link dropdown-toggle" href="#MenuDropdownfollow" data-toggle="collapse" aria-controls="MenuDropdownfollow" aria-expanded="false">Following</a>
+                                    <ul id="MenuDropdownfollow" class="sub-navbar collapse flex-column" >
+                                  
+                                        <!--add friendsname here-->
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>   
+                    </nav>
+                
+                
+                
+          
+                    <!-- Social icons -->
+                    <p class="sidebar-social-icons social-icons">
+                        <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-youtube fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-instagram fa-2x"></i></a>
+                    </p>
+                
+                </div>
+            </div> 
+        </div>  
+        
+        <div id='content'>
+            <div id="content-wrapper">
+                <!-- Main content area -->
+                <main class="container-fluid">
+                    <div class="row">
+                        <!-- Main content -->
+                        <div class="col-md-8" id="posts_list">
+                            <article class="excerpt">
+                                <div class="excerpttxt">
+                                    
+                            
+                                    <ul class="nospace inline pushright font-xs">
+                                        <li>
+                                            <ul class="nospace inline pushright font-xs">
+                                                <li><h6 class="heading">Posuere lorem placerat</h6></li>
+                                                <ul class="nospace inline pushright font-xs">
+                                                    <li><i class="fa fa-comments"></i> <a href="#">@user_id</a></li>
+                                                    <li><i class="fa fa-calendar-o"></i> 02/01/45</li>
+                                                </ul>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <p>Nunc non erat molestie faucibus duis aliquam rutrum sapien non pretium tortor lacinia auctor donec et ullamcorper lacus&hellip;</p>
+                                    
+                                    <ul class="nospace inline pushright font-xs">
+                                      <li><i class="fa fa-calendar-o"></i> 02/01/45</li>
+                                      <li><i class="fa fa-comments"></i> <a href="#">4</a></li>
+                                      <li><i class="fa fa-eye"></i> 10</li>
+                                    </ul>
+                                </div>
+                            </article>  
+                            
+                            <article class="excerpt">
+                                <div class="excerpttxt">
+                                    
+                            
+                                    <ul class="nospace inline pushright font-xs">
+                                        <li>
+                                            <ul class="nospace inline pushright font-xs">
+                                                <li><h6 class="heading">Posuere lorem placerat</h6></li>
+                                                <ul class="nospace inline pushright font-xs">
+                                                    <li><i class="fa fa-comments"></i> <a href="#">@user_id</a></li>
+                                                    <li><i class="fa fa-calendar-o"></i> 02/01/45</li>
+                                                </ul>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <p>Nunc non erat molestie faucibus duis aliquam rutrum sapien non pretium tortor lacinia auctor donec et ullamcorper lacus&hellip;</p>
+                                    
+                                    <ul class="nospace inline pushright font-xs">
+                                      <li><i class="fa fa-calendar-o"></i> 02/01/45</li>
+                                      <li><i class="fa fa-comments"></i> <a href="#">4</a></li>
+                                      <li><i class="fa fa-eye"></i> 10</li>
+                                    </ul>
+                                </div>
+                            </article>  <article class="excerpt">
+                                <div class="excerpttxt">
+                                    
+                            
+                                    <ul class="nospace inline pushright font-xs">
+                                        <li>
+                                            <ul class="nospace inline pushright font-xs">
+                                                <li><h6 class="heading">Posuere lorem placerat</h6></li>
+                                                <ul class="nospace inline pushright font-xs">
+                                                    <li>
+                                                        <i class="fa fa-comments"></i>
+                                                        <a href="#">@user_id</a>
+                                                    </li>
+                                                    <li><i class="fa fa-calendar-o"></i> 02/01/45</li>
+                                                </ul>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <p>Nunc non erat molestie faucibus duis aliquam rutrum sapien non pretium tortor lacinia auctor donec et ullamcorper lacus&hellip;</p>
+                                    
+                                    <ul class="nospace inline pushright font-xs">
+                                      <li><i class="fa fa-calendar-o"></i> 02/01/45</li>
+                                      <li><i class="fa fa-comments"></i> <a href="#">4</a></li>
+                                      <li><i class="fa fa-eye"></i> 10</li>
+                                    </ul>
+                                </div>
+                            </article>  <article class="excerpt">
+                                <div class="excerpttxt">
+                                    
+                            
+                                    <ul class="nospace inline pushright font-xs">
+                                        <li>
+                                            <ul class="nospace inline pushright font-xs">
+                                                <li><h6 class="heading">Posuere lorem placerat</h6></li>
+                                                <ul class="nospace inline pushright font-xs">
+                                                    <li><i class="fa fa-comments"></i> <a href="#">@user_id</a></li>
+                                                    <li><i class="fa fa-calendar-o"></i> 02/01/45</li>
+                                                </ul>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <p>Nunc non erat molestie faucibus duis aliquam rutrum sapien non pretium tortor lacinia auctor donec et ullamcorper lacus&hellip;</p>
+                                    
+                                    <ul class="nospace inline pushright font-xs">
+                                      <li><i class="fa fa-calendar-o"></i> 02/01/45</li>
+                                      <li><i class="fa fa-comments"></i> <a href="#">4</a></li>
+                                      <li><i class="fa fa-eye"></i> 10</li>
+                                    </ul>
+                                </div>
+                            </article>  <article class="excerpt">
+                                <div class="excerpttxt">
+                                    
+                            
+                                    <ul class="nospace inline pushright font-xs">
+                                        <li>
+                                            <ul class="nospace inline pushright font-xs">
+                                                <li><h6 class="heading">Posuere lorem placerat</h6></li>
+                                                <ul class="nospace inline pushright font-xs">
+                                                    <li><i class="fa fa-comments"></i> <a href="#">@user_id</a></li>
+                                                    <li><i class="fa fa-calendar-o"></i> 02/01/45</li>
+                                                </ul>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <p>Nunc non erat molestie faucibus duis aliquam rutrum sapien non pretium tortor lacinia auctor donec et ullamcorper lacus&hellip;</p>
+                                    
+                                    <ul class="nospace inline pushright font-xs">
+                                      <li><i class="fa fa-calendar-o"></i> 02/01/45</li>
+                                      <li><i class="fa fa-comments"></i> <a href="#">4</a></li>
+                                      <li><i class="fa fa-eye"></i> 10</li>
+                                    </ul>
+                                </div>
+                            </article>  
+                        </div>
+                      
+                    </div> 
+                </main>
+        </div>
+    </div>
+    
+    
+    
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"/>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
